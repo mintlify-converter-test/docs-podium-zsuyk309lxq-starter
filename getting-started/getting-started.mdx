@@ -1,0 +1,125 @@
+---
+title: "Podium API Guide"
+description: "Guide to integrate your app with Podium using REST framework"
+---
+The Podium API utilizes **REST framework** to allow you to integrate your app with the Podium platform. This guide will help you get started.
+
+## To facilitate your application development, below are resources that will help you understand and navigate through Podium API:
+
+*   [Developer Community - Discord](https://discord.gg/podiumdevelopers)
+    
+*   [Postman Collection](https://www.postman.com/podiumhq)
+    
+*   [API code Sample - Github](https://github.com/podium/podium-api-sample-contacts)
+    
+
+## Step 1 : Request access to the Developer Portal
+
+The Developer Portal is where you will create OAuth Applications and get App credentials that will allow you to make successful HTTP requests to Podium’s API.
+
+> ## 📘Developer Account Application
+> 
+> In order to develop Podium Applications, you will need to apply for a Developer Account at developer.podium.com. Once you've signed up, we'll take a few days to review your application. Once approved, we'll send a welcome email to the email address you provided.
+
+## Step 2: Create an app on the Podium Developer Portal
+
+Your OAuth applications will allow you to access the Podium API. You will generate unique credentials that will help during your development. To create an OAuth App:
+
+1.  [Login](https://developer.podium.com/)
+     using your developer account
+2.  Go to **Dashboard**
+3.  Select **Create App**
+4.  Follow the screen steps
+
+The name of your apps can be changed at a later time, but you will be required to enter a name at the time of app creation.
+
+![2544](https://files.readme.io/626f110-Xnip2022-03-15_17-15-11.jpg "Xnip2022-03-15_17-15-11.jpg")
+
+The two "Create App" buttons
+
+## Step 3: Define App Scopes & get app credentials
+
+Once your app has been created, select the **OAuth** option on the side menu. To set up your app icon, redirect URL and scopes.
+
+![1688](https://files.readme.io/28960e7-Xnip2022-03-15_17-17-58.jpg "Xnip2022-03-15_17-17-58.jpg")
+
+The OAuth tab
+
+Podium uses OAuth 2.0, to allow your app to access Podium API on behalf of other Podium users. You can learn more about our authentication by following the guides below.
+
+*   [Podium OAuth 2.0](/docs/oauth)
+    
+*   [Podium OAuth Scopes](/docs/oauth-scopes)
+    
+
+  
+
+> ## 📘
+> 
+> **Note:** When setting up scopes please use the **least privilege** principle, and only select the scopes needed for your app to complete its tasks.
+
+#### Save your changes to generate your app credentials.
+
+Please save the generated Client ID and Client Secret. The Client Secret can not be retrieved once you leave the page, so save it for your own records and reference later. You can regenerate a Client Secret but that will not revoke existing OAuth tokens.
+
+![2334](https://files.readme.io/bae0963-Screen_Shot_2022-03-14_at_12.18.40_PM.png "Screen Shot 2022-03-14 at 12.18.40 PM.png")
+
+## Step 4: Request test organization and location access
+
+In order to make API requests your app needs to be authorized--OAuth 2.0--by a Podium Platform User. If you already have a Podium account, you can authenticate using a user from that organization. If you do not have access to a Podium account, you can create a free trial account at [www.podium.com](www.podium.com)
+.
+
+If you are working on-behalf of a Podium User that does have Podium Platform access (ie You are a contractor working for Company 123), we would recommend that you request a User from that Organization to go through the OAuth 2.0 authentication flow with you and your OAuth 2.0 application.
+
+## Step 5: OAuth app authorization setup and testing
+
+Once you have an account, you will need to go through the OAuth authorization flow to grant your app access to an organization on behalf of an authorized Podium Platform User. You can test our flow using **_Postman_** to better help you with your development.
+
+1.  Download the latest [Postman](https://www.postman.com/downloads/)
+     app. Alternatively you can use [Postman web](https://web.postman.co/home)
+    
+2.  Create a new request and select the **Authorization** tab
+3.  Select Type **OAuth 2.0**
+4.  For the **Auth URL:** https://api.podium.com/oauth/authorize
+5.  For the **Access Token URL:** https://api.podium.com/oauth/token
+6.  Enter the the Client ID and Client Secret generated from your app
+7.  Enter the scopes to request access. **Note:** for multiple scopes, separate them by a **single space.**
+
+![2232](https://files.readme.io/3145971-Screen_Shot_2022-03-14_at_2.12.14_PM.png "Screen Shot 2022-03-14 at 2.12.14 PM.png")
+
+Click "Sign In."
+
+![924](https://files.readme.io/e8a6795-Screen_Shot_2022-03-14_at_2.21.59_PM.png "Screen Shot 2022-03-14 at 2.21.59 PM.png")
+
+When you click **Get New Access Token**, Postman will open a tab/window that will initiate the OAuth flow
+
+Sign in using the credentials from the account in Step 4.
+
+![984](https://files.readme.io/b11b09b-Screen_Shot_2022-03-14_at_2.27.35_PM.png "Screen Shot 2022-03-14 at 2.27.35 PM.png")
+
+You will be prompted to grant you app access to the scopes you requested.
+
+## Step 6: Make your first API request
+
+Once you've successfully granted access to your app, you will be able to make your HTTP requests.
+
+Below is an example of a **GET** HTTP request to retrieve a list of all locations for a given organization.
+
+```http
+https://api.podium.com/v4/locations
+
+```
+
+![2712](https://files.readme.io/31dc55c-Screen_Shot_2022-03-14_at_4.42.36_PM.png "Screen Shot 2022-03-14 at 4.42.36 PM.png")
+
+Check our [API reference](/reference/introduction)
+ page for detailed explanation of our endpoints
+
+*   [Access Data on Behalf of Other Users with OAuth 2](/docs/oauth)
+    
+
+Did this page help you?
+
+Yes
+
+No
